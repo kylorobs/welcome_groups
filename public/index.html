@@ -1,21 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#000000" />
-    <meta
-      name="description"
-      content="Web site created using create-react-app"
-    />
-    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
-    <!--
+
+<head>
+  <meta charset="utf-8" />
+  <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#000000" />
+  <meta name="description" content="Web site created using create-react-app" />
+  <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+  <!--
       manifest.json provides metadata used when your web app is installed on a
       user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
     -->
-    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-    <!--
+  <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+  <!--
       Notice the use of %PUBLIC_URL% in the tags above.
       It will be replaced with the URL of the `public` folder during the build.
       Only files inside the `public` folder can be referenced from the HTML.
@@ -24,12 +22,125 @@
       work correctly both with client-side routing and a non-root public URL.
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
-    <title>React App</title>
-  </head>
-  <body>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="root"></div>
-    <!--
+
+
+  <style>
+    .scaleIn {
+      -webkit-animation: scale-in-center 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+      animation: scale-in-center 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both
+    }
+
+    .slide-in-bottom {
+      -webkit-animation: slide-in-bottom 1s cubic-bezier(0.250, 0.460, 0.450, 0.940) forwards;
+      animation: slide-in-bottom 1s cubic-bezier(0.250, 0.460, 0.450, 0.940) forwards
+    }
+
+    @keyframes scale-in-center {
+      0% {
+        -webkit-transform: scale(0);
+        transform: scale(0);
+        opacity: 1
+      }
+
+      100% {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+        opacity: 1
+      }
+    }
+
+    @-webkit-keyframes slide-in-bottom {
+      0% {
+        -webkit-transform: translateY(1000px);
+        transform: translateY(1000px);
+        opacity: 1
+      }
+
+      100% {
+        -webkit-transform: translateY(0);
+        transform: translateY(0);
+        opacity: 1
+      }
+    }
+
+    @keyframes slide-in-bottom {
+      0% {
+        -webkit-transform: translateY(1000px);
+        transform: translateY(1000px);
+        opacity: 1
+      }
+
+      100% {
+        -webkit-transform: translateY(0);
+        transform: translateY(0);
+        opacity: 1
+      }
+    }
+  </style>
+  <link href="https://www.kclsu.org/skins/print.css" rel="stylesheet" type="text/css" media="print">
+  <link href="https://www.kclsu.org/skins/system.css" rel="stylesheet" type="text/css" media="all">
+  <link href="https://www.kclsu.org/skins/icons.css" rel="stylesheet" type="text/css" media="all">
+
+
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,300,700" as="style" type="text/css"
+    onload="this.onload=null;this.rel='stylesheet'">
+  <noscript>
+    <link rel="stylesheet" href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,700' as='style'
+      type='text/css'>
+  </noscript>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css"
+    integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous"
+    as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css"
+      integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+  </noscript>
+
+
+  <link rel="stylesheet" href="https://use.typekit.net/ejh5evs.css">
+  <link rel="stylesheet" href="https://www.kclsu.org/assets//site_resources/BreeSerif-Bold.otf">
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <script src="https://www.kclsu.org/assets/site_resources/jquery.min.js"></script>
+
+  <script src="https://www.kclsu.org/assets/site_resources/bootstrap.min.js"></script>
+
+
+
+
+  <script type="module"
+    src="https://unpkg.com/kclsu-components@0.1.12/dist/kclsu-components/kclsu-components.esm.js"></script>
+  <script nomodule="" src="https://unpkg.com/kclsu-components@0.1.12/dist/kclsu-components.js"></script>
+
+
+
+
+
+  <link href="https://www.kclsu.org/skins/Controls/EventList.css" rel="stylesheet" type="text/css" media="all">
+  <link href="https://www.kclsu.org/skins/Controls/newslayouts.css" rel="stylesheet" type="text/css" media="all">
+  <link href="https://www.kclsu.org/skins/Controls/News.css" rel="stylesheet" type="text/css" media="all">
+  <link href="https://www.kclsu.org/skins/Controls/Basket.css" rel="stylesheet" type="text/css" media="all">
+  <link href="https://www.kclsu.org/skins/controls/catalogue.css" rel="stylesheet" type="text/css" media="all">
+  <link href="https://www.kclsu.org/stylesheet/KCLSU2019/general.css?v=31" rel="stylesheet" type="text/css">
+  <link href="https://www.kclsu.org/stylesheet/KCLSU2019/header-footer.css?v=51" rel="stylesheet" type="text/css">
+  <link href="https://www.kclsu.org/stylesheet/KCLSU2019/common.css?v=351" rel="stylesheet" type="text/css">
+  <link href="https://www.kclsu.org/stylesheet/KCLSU2019/components.css?v=255" rel="stylesheet" type="text/css">
+  <link href="https://www.kclsu.org/stylesheet/KCLSU2019/sliders.css?v=49" rel="stylesheet" type="text/css">
+  <link href="https://www.kclsu.org/stylesheet/KCLSU2019/navigation.css?v=18" rel="stylesheet" type="text/css">
+  <link href="https://www.kclsu.org/stylesheet/KCLSU2019/cookieconsent.css?v=1" rel="stylesheet" type="text/css">
+  <link href="https://www.kclsu.org/stylesheet/KCLSU2019/homepage.css?v=44" rel="stylesheet" type="text/css">
+  <link href="https://www.kclsu.org/stylesheet/KCLSU2019/slick.css?v=1" rel="stylesheet" type="text/css">
+  <link href="https://www.kclsu.org/stylesheet/KCLSU2019/slick-theme.css?v=10" rel="stylesheet" type="text/css">
+  <link href="https://www.kclsu.org/pagestylesheet/styles.css?v=132" rel="stylesheet" type="text/css" media="all">
+  <link rel="alternate" type="application/rss+xml" title="Website News RSS Feed"
+    href="https://www.kclsu.org/news/rss/6015/">
+  <title>React App</title>
+</head>
+
+<body>
+  <noscript>You need to enable JavaScript to run this app.</noscript>
+  <div id="root"></div>
+  <!--
       This HTML file is a template.
       If you open it directly in the browser, you will see an empty page.
 
@@ -39,5 +150,6 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
-  </body>
+</body>
+
 </html>
