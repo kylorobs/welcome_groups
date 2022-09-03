@@ -1,17 +1,9 @@
 import Socials from './Socials';
 
-const { Avatar, Button } = require('flowbite-react');
-
 const EventDetail = ({ title, description }) => (
-    <article className="h-3/4 w-2/3 p-16 bg-white relative">
+    <article className="w-full p-16 bg-white relative">
         <div className="flex flex-col items-center mb-8">
-            <Avatar
-                rounded
-                size="xl"
-                img="https://res.cloudinary.com/kclsu-media/image/upload/v1/temporary/VCHqDedY_400x400_gucnga"
-                bordered
-            />
-            <h2>{title}</h2>
+            <h2 className="text-5xl mb-8">{title}</h2>
             <Socials />
         </div>
         <div>

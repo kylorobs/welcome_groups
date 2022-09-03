@@ -1,3 +1,37 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+.color-change-3x {
+    -webkit-animation: color-change-3x 8s linear infinite alternate both;
+    animation: color-change-3x 8s linear infinite alternate both;
+}
+
+@-webkit-keyframes color-change-3x {
+    0% {
+        background: #f5a000;
+    }
+
+    50% {
+        background: #ec7c78;
+    }
+
+    100% {
+        background: #5f5aa3;
+    }
+}
+
+@keyframes color-change-3x {
+    0% {
+        background: #f5a000;
+    }
+
+    50% {
+        background: #ec7c78;
+    }
+
+    100% {
+        background: #5f5aa3;
+    }
+}
