@@ -2,10 +2,10 @@ import { Fragment } from 'react';
 import { Dialog, Transition } from '@headlessui/react';
 import { XMarkIcon } from '@heroicons/react/24/outline';
 
-export default function Drawer({ title, children, open, setOpen }) {
+export default function Drawer({ title, children, open, exit }) {
     return (
         <Transition.Root show={open} as={Fragment}>
-            <Dialog as="div" className="relative z-10" onClose={setOpen}>
+            <Dialog as="div" className="relative z-10" onClose={exit}>
                 <div className="fixed inset-0" />
 
                 <div className="fixed inset-0 overflow-hidden">
@@ -31,7 +31,7 @@ export default function Drawer({ title, children, open, setOpen }) {
                                                     <button
                                                         type="button"
                                                         className="rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-                                                        onClick={() => setOpen(false)}
+                                                        onClick={exit}
                                                     >
                                                         <span className="sr-only">Close panel</span>
                                                         <XMarkIcon className="h-6 w-6" aria-hidden="true" />

@@ -1,6 +1,6 @@
 import { InformationCircleIcon, HeartIcon } from '@heroicons/react/20/solid';
 
-const SecondaryCard = ({ title, imageUrl, date, id, favourited }) => (
+const SecondaryCard = ({ title, imageUrl, date, id, favourited, favouriteClick, infoClick }) => (
     <li key={id} className="col-span-1 divide-y divide-gray-200 rounded-lg bg-white shadow my-8">
         <div className="flex w-full items-center justify-between space-x-6 p-6">
             <div className="flex-1 truncate">
@@ -14,23 +14,19 @@ const SecondaryCard = ({ title, imageUrl, date, id, favourited }) => (
         <div>
             <div className="-mt-px flex divide-x divide-gray-200">
                 <div className="flex w-0 flex-1">
-                    <a
-                        role="button"
-                        tabIndex="0"
-                        onKeyDown={() => console.log(id)}
-                        onClick={() => console.log(id)}
+                    <button
+                        type="button"
+                        onClick={() => infoClick(id)}
                         className="relative -mr-px inline-flex w-0 flex-1 items-center justify-center rounded-bl-lg border border-transparent py-4 text-lg font-medium text-gray-700 hover:text-gray-500"
                     >
                         <InformationCircleIcon className="h-10 w-10 text-gray-400" aria-hidden="true" />
                         <span className="ml-3">Info</span>
-                    </a>
+                    </button>
                 </div>
                 <div className="-ml-px flex w-0 flex-1">
-                    <a
-                        role="button"
-                        tabIndex="0"
-                        onKeyDown={() => console.log(id)}
-                        onClick={() => console.log(id)}
+                    <button
+                        type="button"
+                        onClick={() => favouriteClick(id)}
                         className="relative inline-flex w-0 flex-1 items-center justify-center rounded-br-lg border border-transparent py-4 text-lg font-medium text-gray-700 hover:text-gray-500"
                     >
                         <HeartIcon
@@ -38,7 +34,7 @@ const SecondaryCard = ({ title, imageUrl, date, id, favourited }) => (
                             aria-hidden="true"
                         />
                         <span className="ml-3">Favourite</span>
-                    </a>
+                    </button>
                 </div>
             </div>
         </div>

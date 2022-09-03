@@ -1,6 +1,6 @@
 import { InformationCircleIcon, HeartIcon } from '@heroicons/react/20/solid';
 
-const PrimaryCard = ({ title, imageUrl, date, id, infoClick }) => (
+const PrimaryCard = ({ title, imageUrl, date, id, infoClick, favouriteClick, favourited }) => (
     <li
         key={id}
         className="col-span-1 flex flex-col divide-y divide-gray-200 rounded-lg bg-white text-center shadow-md"
@@ -32,10 +32,13 @@ const PrimaryCard = ({ title, imageUrl, date, id, infoClick }) => (
                 <div className="-ml-px flex w-0 flex-1 ">
                     <button
                         type="button"
-                        onClick={() => console.log(id)}
+                        onClick={() => favouriteClick(id)}
                         className="relative inline-flex w-0 flex-1 items-center justify-center rounded-br-lg border border-transparent py-4 text-lg font-medium text-gray-700 hover:text-gray-500"
                     >
-                        <HeartIcon className="h-10 w-10 text-gray-400" aria-hidden="true" />
+                        <HeartIcon
+                            className={`h-10 w-10 text-gray-400 ${favourited ? 'text-[#fa7185]' : 'text-gray-400'}`}
+                            aria-hidden="true"
+                        />
                         <span className="ml-3">Favourite</span>
                     </button>
                 </div>
