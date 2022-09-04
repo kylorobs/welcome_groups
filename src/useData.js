@@ -5,14 +5,23 @@ const UseData = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [data, setData] = useState(null);
     const [selectedEvent, setSelectedEvent] = useState(null);
+    const [searchTerm, setSearchTerm] = useState('');
+
+    function addHours(numOfHours, date = new Date()) {
+        date.setTime(date.getTime() + numOfHours * 60 * 60 * 1000);
+        return date;
+    }
 
     function createDataArray(fetchedData) {
         const ar = [];
         for (const node in fetchedData) {
             if (fetchedData[node]) {
-                fetchedData[node].id = node;
-                fetchedData[node].favourited = false;
-                ar.push(fetchedData[node]);
+                const event = fetchedData[node];
+                event.id = node;
+                event.favourited = false;
+                const sessionDateObj = new Date(event.session_date_time);
+                event.date_time = `${sessionDateObj.toDateString()} ${sessionDateObj.toLocaleTimeString()}`;
+                if (!(new Date() > addHours(1, sessionDateObj))) ar.push(event);
             }
         }
         return ar;
@@ -42,6 +51,10 @@ const UseData = () => {
         return data.find((groupEvent) => groupEvent.id === id);
     }
 
+    function filerBySearchTerm(ar, search) {
+        return ar.filter((evt) => evt.group_name.includes(search));
+    }
+
     const favouriteEvent = (id) => {
         if (!data) return;
         const dataCopy = data.map((event) => {
@@ -64,12 +77,15 @@ const UseData = () => {
 
     return {
         isLoading,
-        data,
+        data: searchTerm ? filerBySearchTerm(data, searchTerm) : data,
         selectEvent,
         clearSelected,
         favouriteEvent,
+        search: setSearchTerm,
         selectedEvent,
         favourites: data && data.filter((evt) => evt.favourited),
+        liveToday:
+            data && data.filter((evt) => new Date(evt.session_date_time).toDateString() === new Date().toDateString()),
     };
 };
 

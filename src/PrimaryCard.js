@@ -25,7 +25,7 @@ const PrimaryCard = ({ title, imageUrl, date, id, infoClick, favouriteClick, fav
                         onClick={() => infoClick(id)}
                         className="relative -mr-px inline-flex w-0 flex-1 items-center justify-center rounded-bl-lg border border-transparent py-4 text-lg font-medium text-gray-700 hover:text-gray-500"
                     >
-                        <InformationCircleIcon className="h-10 w-10 text-gray-400" aria-hidden="true" />
+                        <InformationCircleIcon className="h-10 w-10 text-[#5e5da1]" aria-hidden="true" />
                         <span className="ml-3">Info</span>
                     </button>
                 </div>

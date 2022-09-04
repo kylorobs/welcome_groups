@@ -10,7 +10,7 @@ export default function Upcoming({ showEventDetail, favouriteEvent, events }) {
                     favouriteClick={favouriteEvent}
                     favourited={event.favourited}
                     title={event.group_name}
-                    date={event.session_date_time}
+                    date={event.date_time}
                     id={event.id}
                     imageUrl={event.group_logo}
                 />
