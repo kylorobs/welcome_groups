@@ -5,7 +5,7 @@ import { XMarkIcon } from '@heroicons/react/24/outline';
 export default function Drawer({ title, children, open, exit }) {
     return (
         <Transition.Root show={open} as={Fragment}>
-            <Dialog as="div" className="relative z-10" onClose={exit}>
+            <Dialog as="div" className="relative z-[99999]" onClose={exit}>
                 <div className="fixed inset-0" />
 
                 <div className="fixed inset-0 overflow-hidden">
@@ -27,14 +27,14 @@ export default function Drawer({ title, children, open, exit }) {
                                                 <Dialog.Title className="text-lg font-medium text-gray-900">
                                                     {title}
                                                 </Dialog.Title>
-                                                <div className="ml-3 flex h-7 items-center">
+                                                <div className="ml-3 flex h-7 items-center fixed right-8 top-8">
                                                     <button
                                                         type="button"
-                                                        className="rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                                                        className="rounded-md bg-white text-green-800 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
                                                         onClick={exit}
                                                     >
                                                         <span className="sr-only">Close panel</span>
-                                                        <XMarkIcon className="h-6 w-6" aria-hidden="true" />
+                                                        <XMarkIcon className="h-12 w-12" aria-hidden="true" />
                                                     </button>
                                                 </div>
                                             </div>

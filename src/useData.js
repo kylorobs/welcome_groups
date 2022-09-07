@@ -1,5 +1,6 @@
 /* eslint-disable no-restricted-syntax */
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
+import { retrieveLocallyStoredValue, setLocallyStoredValue } from './libs';
 
 const UseData = () => {
     const [isLoading, setIsLoading] = useState(false);
@@ -12,13 +13,19 @@ const UseData = () => {
         return date;
     }
 
-    function createDataArray(fetchedData) {
+    function isFavourited(id) {
+        const savedFavs = retrieveLocallyStoredValue('welcome_favourites');
+        if (!savedFavs || savedFavs.length < 1) return false;
+        return savedFavs.find((saved) => saved === id);
+    }
+
+    function buildArray(fetchedData) {
         const ar = [];
         for (const node in fetchedData) {
             if (fetchedData[node]) {
                 const event = fetchedData[node];
                 event.id = node;
-                event.favourited = false;
+                event.favourited = isFavourited(event.id);
                 const sessionDateObj = new Date(event.session_date_time);
                 event.date_time = `${sessionDateObj.toDateString()} ${sessionDateObj.toLocaleTimeString()}`;
                 if (!(new Date() > addHours(1, sessionDateObj))) ar.push(event);
@@ -26,6 +33,8 @@ const UseData = () => {
         }
         return ar;
     }
+
+    const createDataArray = useCallback(buildArray, []);
 
     function sortByDate(ar) {
         return ar.sort((a, b) => new Date(a.session_date_time) - new Date(b.session_date_time));
@@ -38,13 +47,12 @@ const UseData = () => {
             const dataurl = process.env.REACT_APP_DATA_URL;
             const dataResponse = await fetch(dataurl).catch((er) => console.log(er));
             const dataResult = await dataResponse.json();
-            console.log(dataResult);
             setData(sortByDate(createDataArray(dataResult)));
             setIsLoading(false);
         }
 
         if (!data) fetchEvents();
-    }, [data]);
+    }, [data, createDataArray]);
 
     function findEvent(id) {
         if (!data) return null;
@@ -55,10 +63,27 @@ const UseData = () => {
         return ar.filter((evt) => evt.group_name.includes(search));
     }
 
+    function removeIdFromSavedFavourites(id) {
+        const savedFavs = retrieveLocallyStoredValue('welcome_favourites');
+        if (!savedFavs || savedFavs.length < 1) return;
+        const updated = savedFavs.filter((saved) => saved !== id);
+        setLocallyStoredValue('welcome_favourites', updated);
+    }
+
+    function addIdToSavedFavourites(id) {
+        const savedFavs = retrieveLocallyStoredValue('welcome_favourites');
+        const favourites = savedFavs || [];
+        favourites.push(id);
+        setLocallyStoredValue('welcome_favourites', favourites);
+    }
+
     const favouriteEvent = (id) => {
         if (!data) return;
+        const isAlreadyFavourited = isFavourited(id);
+        if (isAlreadyFavourited) removeIdFromSavedFavourites(id);
         const dataCopy = data.map((event) => {
             if (event.id === id) {
+                if (!isAlreadyFavourited) addIdToSavedFavourites(id);
                 const evtCopy = { ...event };
                 evtCopy.favourited = !evtCopy.favourited;
                 return evtCopy;

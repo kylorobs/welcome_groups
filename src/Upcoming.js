@@ -2,6 +2,9 @@ import PrimaryCard from './PrimaryCard';
 
 export default function Upcoming({ showEventDetail, favouriteEvent, events }) {
     if (!events) return 'loading';
+
+    if (events && events.length < 1) return <p>No results found.</p>;
+
     return (
         <ul className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
             {events.map((event) => (
